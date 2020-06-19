@@ -55,6 +55,7 @@ n** -----------------------------------------------------------------------
 #define GLIDE_OS_WIN32          0x4
 #define GLIDE_OS_MACOS          0x8
 #define GLIDE_OS_OS2            0x10
+#define GLIDE_OS_OSX            0x20
 #define GLIDE_OS_OTHER          0x40 /* For Proprietary Arcade HW */
 
 #define GLIDE_SST_SHIFT         7
@@ -78,7 +79,7 @@ n** -----------------------------------------------------------------------
 
 /* We need two checks on the OS: one for endian, the other for OS */
 /* Check for endianness */
-#if defined(__IRIX__) || defined(__sparc__) || defined(MACOS)
+#if defined(__IRIX__) || defined(__sparc__) || defined(MACOS) || defined(__OSX__)
 #  define GLIDE_ENDIAN    GLIDE_ENDIAN_BIG
 #else
 #  define GLIDE_ENDIAN    GLIDE_ENDIAN_LITTLE
@@ -93,7 +94,8 @@ n** -----------------------------------------------------------------------
 #  define GLIDE_OS        GLIDE_OS_WIN32
 #elif defined(macintosh)
 #  define GLIDE_OS        GLIDE_OS_MACOS
-#else
+#elif defined(__OSX__)
+#  define GLIDE_OS        GLIDE_OS_OSX
 #error "Unknown OS"
 #endif
 
